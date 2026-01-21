@@ -15,9 +15,9 @@ It provisions three RHEL 9 VMs via Vagrant on VirtualBox:
 
 <h2>Technologies Used</h2>
 
-- **Languages:** Bash
+- **Language:** Bash
 - **Utilities:** Vagrant (for VM provisioning), VirtualBox (hypervisor), Telegram Bot APIs
-- **Environments:** RHEL 9
+- **Environment:** RHEL 9
 
 
 <h2>Scripts Overview </h2>
@@ -27,12 +27,10 @@ It provisions three RHEL 9 VMs via Vagrant on VirtualBox:
 | 1-remote-install-apache.sh | Remotely installs and configures Apache                                | Runs on admin                  |
 | 2-backup-file.sh        | Remotely backs up /var/www/html and other important files                | Runs on admin                  |
 | 3-run-cmd-remotely.sh   | Executes any command remotely on target web server                       | Runs on admin                  |
-| 4-monitor-service.sh    | Checks and records Apache status. Sends Telegram alert if down           | Runs locally on each web server |
+| 4-monitor-service.sh    | Checks and records Apache status in a log file. Sends Telegram alert if down           | Runs locally on each web server |
 
-The admin server remotely installs Apache, backs up web files, and runs remote commands on target web servers.
-<br />
-<br />
-Each web server runs its own local monitoring script that checks the Apache service status every few minutes and sends Telegram notifications on downtime.
+- The admin server remotely installs Apache, backs up web files, and runs remote commands on target web servers.
+- Each web server runs its own local monitoring script that checks the Apache service status every few minutes and sends Telegram notifications on downtime.
 
 
 <h2>Requirements/Prerequisite </h2>
@@ -59,10 +57,12 @@ To successfully execute the script, ensure the following conditions are met:
 <h3>Script 2: 2-backup-file.sh</h3>
 <img width="645" height="21" alt="3" src="https://github.com/user-attachments/assets/c2ec1a06-02d9-4164-b309-b58a68fbc35a" />
 <img width="854" height="193" alt="4" src="https://github.com/user-attachments/assets/7e31179f-14ed-462c-928d-13b1c3624e5b" />
-<img width="665" height="28" alt="5" src="https://github.com/user-attachments/assets/15b2346e-bbc9-4e49-bff0-060093fe0702" />
 <br />
 <ul>
-  <li>Back up files from the web servers in the local server</li>
+  <li>Back up files from the web servers to the local admin server</li>
+</ul>
+<img width="665" height="28" alt="5" src="https://github.com/user-attachments/assets/15b2346e-bbc9-4e49-bff0-060093fe0702" />
+<ul>
   <li>Schedule it to run every day with <code>cron</code></li>
 </ul>
 
@@ -70,26 +70,33 @@ To successfully execute the script, ensure the following conditions are met:
 <img width="500" height="392" alt="6" src="https://github.com/user-attachments/assets/cb7e0aa0-5bee-4a41-8070-cece5a91c078" />
 <ul>
   <li>Execute any commands remotely on the web servers</li>
-  <li>Provided four options to run the script
+  <li>Provide four options to run the script
     <ul>
-      <li><code>-f</code>: override the default server</li>
-      <li><code>-n</code>: 'dry run' the command. Display the command instead of executed.</li>
-      <li><code>-s</code>: run the script with root privileges</li>
-      <li><code>-v</code>: verbose mode</li>
+      <li><code>-f</code>: Overrides the default server by specifying a file that lists the servers</li>
+      <li><code>-n</code>: 'Dry run' the command. Display the command instead of executed.</li>
+      <li><code>-s</code>: Run the script with root privileges</li>
+      <li><code>-v</code>: Verbose mode</li>
     </ul>
   </li>
 </ul>
 
 <h3>Script 4: 4-monitor-service.sh</h3>
 <img width="600" height="305" alt="7" src="https://github.com/user-attachments/assets/10121537-6d52-4061-9bed-b6309f9ddac6" />
-<img width="450" height="153" alt="8" src="https://github.com/user-attachments/assets/e0a5ef6a-c0c5-4aa1-9f88-f29711b8fc72" />
 <br />
 <ul>
-  <li>Check if Apache is running on the webserver</li>
+  <li>Check if Apache is running on the web servers</li>
   <li>Record the up/down status in a log file</li>
-  <li>If Apache is down, restart the service and send alert to Telegram client</li>
-<img width="711" height="22" alt="9" src="https://github.com/user-attachments/assets/9cea036b-e1bb-429d-86fc-1928d4e813a4" />
-  <li>Schedule it to run regularly with <code>cron</code></li>
 </ul>
+
+<img width="711" height="22" alt="9" src="https://github.com/user-attachments/assets/9cea036b-e1bb-429d-86fc-1928d4e813a4" />
+<ul>
+  <li>Schedule it to run every 5 minutes with <code>cron</code></li>
+</ul>
+
+<img width="623" height="92" alt="Screenshot 2026-01-21 161127" src="https://github.com/user-attachments/assets/304a359f-f664-40f4-b709-92f914164906" />
+<ul>
+  <li>If Apache is down, restart the service and send alert to Telegram client</li>
+</ul>
+
 
 <br />
