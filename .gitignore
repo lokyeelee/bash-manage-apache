@@ -1,0 +1,3 @@
+/shared/monitor-service.log.*
+/shared/testserver
+/.vagrant
