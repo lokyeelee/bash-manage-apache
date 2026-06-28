@@ -1,7 +1,7 @@
 <h1>Set up and Monitor Apache on Linux VM using Bash </h1>
 
 <h2>Introduction</h2>
-<b>I wrote four Bash scripts to automate the setup and monitoring of Apache web servers across multiple virtual machines. </b>
+<b>I wrote four Bash scripts to automate the setup and monitoring of Apache web servers across multiple virtual machines. </b> This project is designed to simulate enterprise server operations and administration in a controlled lab environment.
 <br />
 <br />
 It provisions three RHEL 9 VMs via Vagrant on VirtualBox:
@@ -10,7 +10,7 @@ It provisions three RHEL 9 VMs via Vagrant on VirtualBox:
   <li>webserver2 — Apache web server</li>
   <li>webserver3 — Apache web server</li>
 </ol>
-<img width="750" height="648" alt="Screenshot 2026-01-21 120415" src="https://github.com/user-attachments/assets/f3978744-0637-4a24-8a49-2da81ecc8b05" />
+<img width="800" height="450" alt="Screenshot 2026-01-21 120415" src="https://github.com/user-attachments/assets/f3978744-0637-4a24-8a49-2da81ecc8b05" />
 
 
 <h2>Technologies Used</h2>
