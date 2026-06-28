@@ -1,4 +1,4 @@
-<h1>Set up and Monitor Apache on Linux VM using Bash </h1>
+<h1>Automated Apache Deployment and Monitoring with Bash</h1>
 
 <h2>Introduction</h2>
 <b>I wrote four Bash scripts to automate the setup and monitoring of Apache web servers across multiple virtual machines. </b> This project is designed to simulate enterprise server operations and administration in a controlled lab environment.
